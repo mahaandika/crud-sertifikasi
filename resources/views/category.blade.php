@@ -1,6 +1,6 @@
-<x-layouts.app :title="__('Category')">
+<x-layouts.app :title="__('kategori')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <h1 class=" text-2xl font-bold">Category Table</h1>
+        <h1 class=" text-2xl font-bold">Tabel Kategori</h1>
         
         <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center  md:space-x-3 flex-shrink-0">
             <button
@@ -20,7 +20,7 @@
                             d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                         />
                 </svg>
-                tambah data category
+                tambah data kategori
             </button>
     </div>
 
@@ -29,7 +29,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Category name
+                        nama kategori
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Actions</span>
@@ -48,7 +48,7 @@
                             </button>
                         </a>
                         <button class="ml-3 rounded-lg bg-red-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800">
-                            Delete
+                            Hapus
                         </button>
                     </td>
                 </tr>
