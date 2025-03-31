@@ -49,7 +49,7 @@ class CategoryList extends Component
     public function resetInputFields()
     {
         $this->name = '';
-        $this->categoryId = '';
+        $this->categoryId = null;
     }
     
     public function store()
@@ -58,9 +58,16 @@ class CategoryList extends Component
             'name' => 'required|string|max:255',
         ]);
         
-        Category::updateOrCreate(['id' => $this->categoryId], [
-            'name' => $this->name
-        ]);
+        if ($this->categoryId) {
+            Category::updateOrCreate(
+                ['id' => $this->categoryId],
+                ['name' => $this->name]
+            );
+            session()->flash('message', 'Kategori berhasil diperbarui.');
+        } else {
+            Category::create(['name' => $this->name]);
+            session()->flash('message', 'Kategori berhasil ditambahkan.');
+        }
         
         session()->flash('message', $this->categoryId ? 'Kategori berhasil diperbarui.' : 'Kategori berhasil ditambahkan.');
         

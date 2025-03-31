@@ -39,6 +39,8 @@
                                 <th>Nama</th>
                                 <th>Kategori</th>
                                 <th>Gambar</th>
+                                <th>Description</th>
+                                <th>Price</th>
                                 <th>Tanggal Dibuat</th>
                                 <th width="150px">Aksi</th>
                             </tr>
@@ -48,14 +50,16 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $menu->name }}</td>
-                                    <td>{{ $menu->kategori->name }}</td>
+                                    <td>{{ $menu->category->name }}</td>
                                     <td>
-                                        @if ($menu->image_url)
-                                            <img src="{{ asset('storage/' . $menu->image_url) }}" alt="{{ $menu->name }}" width="50">
+                                        @if ($menu->image)
+                                            <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}" width="50">
                                         @else
                                             <span class="text-muted">Tidak ada gambar</span>
                                         @endif
                                     </td>
+                                    <td>{{ $menu->description }}</td>
+                                    <td>{{ $menu->price }}</td>
                                     <td>{{ $menu->created_at->format('d/m/Y H:i') }}</td>
                                     <td>
                                         <button wire:click="edit({{ $menu->id }})" class="btn btn-sm btn-info">Edit</button>
@@ -114,6 +118,18 @@
                             @elseif ($oldImage)
                                 <img src="{{ asset('storage/' . $oldImage) }}" alt="Current Image" class="mt-2" width="100">
                             @endif
+                        </div>
+    
+                        <div class="form-group mb-3">
+                            <label for="description">Deskripsi</label>
+                            <textarea wire:model="description" class="form-control" id="description" placeholder="Masukkan Deskripsi"></textarea>
+                            @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
+    
+                        <div class="form-group mb-3">
+                            <label for="price">Harga</label>
+                            <input type="number" step="0.01" wire:model="price" class="form-control" id="price" placeholder="Masukkan Harga">
+                            @error('price') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         
                         <div class="modal-footer">

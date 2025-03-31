@@ -18,6 +18,8 @@ class MenuList extends Component
     public $menuId;
     public $name;
     public $image;
+    public $description;
+    public $price;
     public $category_id;
     public $oldImage;
     public $isOpen = false;
@@ -63,6 +65,8 @@ class MenuList extends Component
         $this->menuId = '';
         $this->name = '';
         $this->category_id = '';
+        $this->description = '';
+        $this->price = '';
         $this->image = null;
         $this->oldImage = null;
     }
@@ -72,24 +76,35 @@ class MenuList extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'image' => $this->menuId ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Simplified validation
         ]);
         
+        // Generate a new UUID for the menu if it's a new entry
+        $menuId = $this->menuId ?? (string) \Illuminate\Support\Str::uuid();
+
+        // Initialize the image URL
         $imageUrl = $this->oldImage;
-        
+
+        // Handle the image upload
         if ($this->image) {
-            // Hapus gambar lama jika ada
+            // Delete the old image if it exists
             if ($this->oldImage) {
                 Storage::disk('public')->delete($this->oldImage);
             }
             
+            // Store the new image and get the path
             $imageUrl = $this->image->store('menus', 'public');
         }
-        
-        Menu::updateOrCreate(['id' => $this->menuId], [
+
+        // Create or update the menu
+        Menu::updateOrCreate(['id' => $menuId], [
             'name' => $this->name,
-            'kategori_id' => $this->kategori_id,
-            'image_url' => $imageUrl,
+            'category_id' => $this->category_id,
+            'description' => $this->description,
+            'price' => $this->price,
+            'image' => $imageUrl,
         ]);
         
         session()->flash('message', $this->menuId ? 'Menu berhasil diperbarui.' : 'Menu berhasil ditambahkan.');
