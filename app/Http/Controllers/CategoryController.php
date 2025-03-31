@@ -12,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::latest()->paginate(5);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -44,7 +45,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -52,7 +53,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $category->update($request->all());
+
+        return redirect()->route('categories.index')
+            ->with('message', 'Kategori berhasil diperbarui.');
     }
 
     /**
@@ -60,6 +68,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('categories.index')
+            ->with('message', 'Kategori berhasil dihapus.');
     }
 }
