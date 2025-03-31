@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
         use HasFactory, HasUuids;
 
         protected $keyType = 'string';
-        public $incrementing = false;
+        public $incrementing = false;   
         
         protected $fillable = ['name'];
 

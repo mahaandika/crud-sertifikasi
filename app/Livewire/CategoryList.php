@@ -14,6 +14,8 @@ class CategoryList extends Component
     public $categoryId;
     public $name;
     public $isOpen = false;
+    public $categoryToDelete;
+    public $showDeleteModal = false;
     
     protected $listeners = ['refresh' => '$refresh'];
     
@@ -75,19 +77,23 @@ class CategoryList extends Component
         $this->resetInputFields();
     }
     
-    public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        $this->categoryId = $id;
-        $this->name = $category->name;
+    // public function edit($id)
+    // {
+    //     $category = Category::findOrFail($id);
+    //     $this->categoryId = $id;
+    //     $this->name = $category->name;
         
-        $this->openModal();
-    }
+    //     $this->openModal();
+    // }
     
-    public function delete($id)
-    {
-        $category = Category::find($id);
-        $category->delete();
-        session()->flash('message', 'Kategori berhasil dihapus.');
-    }
+    // public function delete()
+    // {
+    //     $category = Category::find($this->categoryToDelete);
+    //     if ($category) {
+    //         $category->delete();
+    //         session()->flash('message', 'Kategori berhasil dihapus.');
+    //     }
+    //     $this->showDeleteModal = false;
+    //     $this->categoryToDelete = null;
+    // }
 }

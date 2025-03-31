@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Livewire\Volt\Volt;
 use App\Livewire\MenuList;
 use App\Livewire\CategoryList;
@@ -11,6 +12,8 @@ Route::get('/', function () {
 
 Route::get('/kategoris', CategoryList::class)->name('categories.index');
 Route::get('/menus', MenuList::class)->name('menus.index');
+
+Route::resource('categories', CategoryController::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
