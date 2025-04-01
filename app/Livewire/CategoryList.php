@@ -55,27 +55,41 @@ class CategoryList extends Component
     }
     
     public function store()
-    {
-        $this->validate([
-            'name' => 'required|string|max:255',
-        ]);
-        
-        if ($this->categoryId) {
-            Category::updateOrCreate(
-                ['id' => $this->categoryId],
-                ['name' => $this->name]
-            );
-            session()->flash('message', 'Kategori berhasil diperbarui.');
-        } else {
-            Category::create(['name' => $this->name]);
-            session()->flash('message', 'Kategori berhasil ditambahkan.');
-        }
-        
-        session()->flash('message', $this->categoryId ? 'Kategori berhasil diperbarui.' : 'Kategori berhasil ditambahkan.');
-        
-        $this->closeModal();
-        $this->resetInputFields();
+{
+    $this->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    if ($this->categoryId) {
+        // Update kategori jika sedang dalam mode edit
+        $category = Category::findOrFail($this->categoryId);
+        $category->update(['name' => $this->name]);
+        session()->flash('message', 'Kategori berhasil diperbarui.');
+    } else {
+        // Tambah kategori baru jika tidak dalam mode edit
+        Category::create(['name' => $this->name]);
+        session()->flash('message', 'Kategori berhasil ditambahkan.');
     }
+
+    $this->resetForm();
+}
+
+private function resetForm()
+{
+    $this->categoryId = null;
+    $this->name = '';
+    $this->isOpen = false; // Tutup modal setelah proses selesai
+}
+
+
+    public function edit($id)
+{
+    $category = Category::findOrFail($id); 
+    $this->categoryId = $category->id;
+    $this->name = $category->name;
+    $this->isOpen = true; // Menampilkan modal
+}
+
     
     // public function edit($id)
     // {
