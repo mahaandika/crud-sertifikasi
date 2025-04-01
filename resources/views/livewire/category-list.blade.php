@@ -83,6 +83,7 @@
             </div>
             <button
                 type="button"
+                wire:click="closeModal()"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-dismiss-target="#alert-success"
             >
@@ -106,24 +107,24 @@
         </div>
         @endif
         
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
+                <div class="overflow-x-auto min-w-full">
+                    <table class="mt-5 w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">No</th>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Nama</th>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Tanggal Dibuat</th>
-                                <th width="150px">Aksi</th>
+                                <th scope="col" class="px-6 py-4">
+                                    <span class="sr-only">Aksi</span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($categories as $category)
                                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
+                                    <td class="px-4 py-3">{{ $loop->iteration }}</td>
+                                    <td class="px-4 py-3">{{ $category->name }}</td>
+                                    <td class="px-4 py-3">{{ $category->created_at->format('d/m/Y H:i') }}</td>
                                     {{-- <td class="px-4 py-3 flex items-center justify-end">
                                         <button wire:click="edit({{ $category->id }})" >Edit</button>
                                         <button wire:click="delete({{ $category->id }})"  onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">Hapus</button>
@@ -150,11 +151,49 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
     </div>
     
-    <!-- Modal Form -->
+    
+
+
+<!-- Main modal -->
+
+<div aria-hidden="true" class="hidden {{ $isOpen ? 'show' : '' }} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full" tabindex="-1" role="dialog" style="{{ $isOpen ? 'display: block; ' : 'display: none;' }}">
+     <div class="absolute left-0 top-0 h-screen w-full bg-black opacity-40"></div>
+            <div class="fixed left-0 right-0 top-0 z-50 flex h-screen max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
+            <div class="relative p-4 w-full max-w-md max-h-full" role="document">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            {{ $categoryId ? 'Edit Kategori' : 'Tambah Kategori' }}
+                        </h3>
+                        <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" wire:click="closeModal()" aria-label="Close">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-4 md:p-5">
+                        <form class="space-y-4" wire:submit.prevent="store">
+                            <div>
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kategori</label>
+                                <input wire:model="name" type="text" name="email" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="masukkan nama kategori"  />
+                                @error('name') <span class="text-red-600 text-sm capitalize ml-1 mt-1">{{ $message }}</span> @enderror
+                            </div>
+                            <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+
+    {{-- <!-- Modal Form -->
     <div class="modal fade {{ $isOpen ? 'show' : '' }}" tabindex="-1" role="dialog" style="{{ $isOpen ? 'display: block; ' : 'display: none;' }}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -178,4 +217,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
