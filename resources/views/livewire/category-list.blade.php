@@ -41,7 +41,7 @@
 
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                 <button wire:click="create()" 
-                class="flex items-center justify-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                class="flex items-center justify-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 cursor-pointer">
                 <svg
                     class="h-3.5 w-3.5 mr-2"
                     fill="currentColor"
@@ -136,7 +136,7 @@
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="ml-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="ml-3 rounded-lg bg-red-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800" 
+                                            <button type="submit" class="ml-3 rounded-lg bg-red-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800 cursor-pointer" 
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                                                 Hapus
                                             </button>

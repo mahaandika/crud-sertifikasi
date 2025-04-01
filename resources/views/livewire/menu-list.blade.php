@@ -39,9 +39,9 @@
                 </div>
             </div>
 
-            <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+            <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 cursor-pointer">
                 <button wire:click="create()" 
-                    class="flex items-center justify-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                    class="flex items-center justify-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 cursor-pointer">
                     <svg
                         class="h-3.5 w-3.5 mr-2"
                         fill="currentColor"
@@ -59,7 +59,7 @@
                 </button>
 
                 <div class="flex items-center space-x-3 w-full md:w-auto">
-                    <select wire:model.live="categoryFilter" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2">
+                    <select wire:model.live="categoryFilter" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2 cursor-pointer">
                         <option value="">-- Pilih Kategori --</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -158,7 +158,7 @@
 
                                         <form action="{{ route('menus.destroy', $menu->id) }}" method="POST" class="ml-3">
                                             @csrf @method('DELETE')
-                                                <button wire:click="delete({{ $menu->id }})" class="ml-3 rounded-lg bg-red-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800" onclick="return confirm('Apakah Anda yakin ingin menghapus menu ini?')">Hapus</button>
+                                                <button wire:click="delete({{ $menu->id }})" class="ml-3 rounded-lg bg-red-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800 cursor-pointer" onclick="return confirm('Apakah Anda yakin ingin menghapus menu ini?')">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
