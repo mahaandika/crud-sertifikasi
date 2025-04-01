@@ -12,7 +12,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::latest()->paginate(5);
+        return view('admin.menus.index', compact('menus'));
     }
 
     /**
@@ -44,7 +45,7 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return view('admin.menus.edit', compact('menu'));
     }
 
     /**
@@ -60,6 +61,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return redirect()->route('menus.index')
+            ->with('message', 'Menu berhasil dihapus.');
     }
 }
