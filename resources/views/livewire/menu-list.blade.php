@@ -152,11 +152,11 @@
                                     <td class="px-4 py-3">{{ $menu->created_at->format('d/m/Y H:i') }}</td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         {{-- <button wire:click="edit({{ $menu->id }})" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button> --}}
-                                        <a href="{{ route('categories.edit', $menu->id) }}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <a href="{{ route('menus.edit', $menu->id) }}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                             Edit
                                         </a>
 
-                                        <form action="{{ route('categories.destroy', $menu->id) }}" method="POST" class="ml-3">
+                                        <form action="{{ route('menus.destroy', $menu->id) }}" method="POST" class="ml-3">
                                             @csrf @method('DELETE')
                                                 <button wire:click="delete({{ $menu->id }})" class="ml-3 rounded-lg bg-red-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800" onclick="return confirm('Apakah Anda yakin ingin menghapus menu ini?')">Hapus</button>
                                         </form>
