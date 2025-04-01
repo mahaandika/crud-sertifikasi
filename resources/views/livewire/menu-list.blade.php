@@ -175,67 +175,6 @@
     </div>
     
     <!-- Modal Form -->
-    {{-- <div class="modal fade {{ $isOpen ? 'show' : '' }}" tabindex="-1" role="dialog" style="{{ $isOpen ? 'display: block; background-color: rgba(0, 0, 0, 0.5);' : 'display: none;' }}">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ $menuId ? 'Edit Menu' : 'Tambah Menu' }}</h5>
-                    <button type="button" class="btn-close" wire:click="closeModal()" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form wire:submit.prevent="store">
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Menu</label>
-                            <input type="text" wire:model="name" class="form-control" id="name" placeholder="Masukkan nama menu">
-                            @error('name') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="category_id">Kategori</label>
-                            <select wire:model="category_id" class="form-control" id="category_id">
-                                <option value="">-- Pilih Kategori --</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="image">Gambar</label>
-                            <input type="file" wire:model="image" class="form-control" id="image">
-                            <div wire:loading wire:target="image">Mengupload...</div>
-                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-                            
-                            @if ($image)
-                                <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="mt-2" width="100">
-                            @elseif ($oldImage)
-                                <img src="{{ asset('storage/' . $oldImage) }}" alt="Current Image" class="mt-2" width="100">
-                            @endif
-                        </div>
-    
-                        <div class="form-group mb-3">
-                            <label for="description">Deskripsi</label>
-                            <textarea wire:model="description" class="form-control" id="description" placeholder="Masukkan Deskripsi"></textarea>
-                            @error('description') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-    
-                        <div class="form-group mb-3">
-                            <label for="price">Harga</label>
-                            <input type="number" step="0.01" wire:model="price" class="form-control" id="price" placeholder="Masukkan Harga">
-                            @error('price') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" wire:click="closeModal()">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <div aria-hidden="true" class="hidden {{ $isOpen ? 'show' : '' }} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full" tabindex="-1" role="dialog" style="{{ $isOpen ? 'display: block; ' : 'display: none;' }}">
      <div class="absolute left-0 top-0 h-screen w-full bg-black opacity-40"></div>
             <div class="fixed left-0 right-0 top-0 z-50 flex h-screen max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
