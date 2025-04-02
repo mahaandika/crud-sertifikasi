@@ -58,9 +58,9 @@
                     Tambah Menu
                 </button>
 
-                <div class="flex items-center space-x-3 w-full md:w-auto">
-                    <select wire:model.live="categoryFilter" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2 cursor-pointer">
-                        <option value="">-- Pilih Kategori --</option>
+                <div class="flex items-center space-x-3 w-full md:w-auto p-3">
+                    <select wire:model.live="categoryFilter" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block py-2 px-8 cursor-pointer">
+                        <option value="" class="p-8 m-8" >Pilih Kategori</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
@@ -148,7 +148,7 @@
                                         @endif
                                     </td>
                                     <td class="px-4 py-3">{{ $menu->description }}</td>
-                                    <td class="px-4 py-3">{{ $menu->price }}</td>
+                                    <td class="px-4 py-3">Rp {{ number_format($menu->price, 0, ',', '.') }}</td>
                                     <td class="px-4 py-3">{{ $menu->created_at->format('d/m/Y H:i') }}</td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         {{-- <button wire:click="edit({{ $menu->id }})" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button> --}}
@@ -205,8 +205,8 @@
                             <div>
                                 <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
                                 <div class="flex items-center space-x-3 w-full md:w-auto">
-                                    <select wire:model="category_id" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2" id="category_id">
-                                        <option value="">-- Pilih Kategori --</option>
+                                    <select wire:model="category_id" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block py-2 px-8" id="category_id">
+                                        <option value="">Pilih Kategori</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
