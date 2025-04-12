@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // })->name('home');
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/kategoris', CategoryList::class)->name('categories.index');
 Route::get('/menus', MenuList::class)->name('menus.index');
 
