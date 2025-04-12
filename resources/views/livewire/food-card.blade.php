@@ -35,7 +35,7 @@
                             </p>
                             <p class="font-semibold mb-5">Rp {{ number_format($menu->price, 0, ',', '.') }}</p>
                             <div class="flex justify-center">
-                                <a href="https://www.whatsapp.com/" 
+                                <a href="https://wa.me/6282340506408" target="_blank"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     Pesan Sekarang
                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" 
