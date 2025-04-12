@@ -84,13 +84,6 @@
                                     >Products</a
                                 >
                             </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                    >Contact</a
-                                >
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -228,7 +221,7 @@
                 >
                     <div class="title text-center">
                         <h1 class="text-4xl font-bold capitalize">
-                            our products 
+                            our products
                         </h1>
                         <p
                             class="mb-5 mt-3 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48"
@@ -244,6 +237,42 @@
                     @livewire('food-card')
                 </section>
             </div>
+
+            <footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+                <div class="mx-auto max-w-screen-xl text-center">
+                    <h1
+                        class="flex justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white"
+                    >
+                        Food Court
+                    </h1>
+                    <p class="my-6 text-gray-500 dark:text-gray-400">
+                        Serving you the best food and drinks every day.
+                    </p>
+                    <ul
+                        class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white"
+                    >
+                        <li>
+                            <a
+                                href="#about"
+                                class="mr-4 hover:underline md:mr-6"
+                                >About Us</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="#product"
+                                class="mr-4 hover:underline md:mr-6"
+                                >Products</a
+                            >
+                        </li>
+                    </ul>
+                    <span
+                        class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+                        >© 2025 <a class="hover:underline">Agung Andika</a>. All
+                        Rights Reserved.</span
+                    >
+                </div>
+            </footer>
         </main>
     </body>
 </html>
